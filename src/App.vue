@@ -1,14 +1,17 @@
 <template>
     <ThreeScene />
+    <TitleScreen />
 </template>
 
 <script>
 import ThreeScene from "./components/ThreeScene.vue";
+import TitleScreen from "./components/TitleScreen.vue";
 
 export default {
     name: "App",
     components: {
         ThreeScene,
+        TitleScreen,
     },
 };
 </script>
@@ -24,5 +27,6 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: Founders Grotesk,Helvetica,san-serif;
 }
 </style>

@@ -20,8 +20,7 @@ void main() {
         pow( r.z + 1., 2. )
     );
     vMatCapUV = r.xy / m + .5;
-
-
+    
     vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * modelViewPosition; 
 }

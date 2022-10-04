@@ -20,7 +20,7 @@ class MainThreeScene {
 
     init(container) {
         //RENDERER SETUP
-        this.renderer = new THREE.WebGLRenderer({ antialias: true })
+        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.renderer.debug.checkShaderErrors = true
         container.appendChild(this.renderer.domElement)
@@ -30,19 +30,26 @@ class MainThreeScene {
 
         //CAMERA AND ORBIT CONTROLLER
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-        this.camera.position.set(0, 0, 5)
+        this.camera.position.set(0, 0, 1)
         this.controls = new OrbitControls(this.camera, this.renderer.domElement)
         this.controls.enabled = config.controls
         this.controls.maxDistance = 1500
         this.controls.minDistance = 0
 
+        this.uniforms = {
+            uTime: {
+                value: 0
+            }
+        }
+
         //DUMMY CUBE + SIMPLE GLSL SHADER LINKAGE
         const shaderMat = new THREE.ShaderMaterial({
+            uniforms: this.uniforms,
             vertexShader: simpleVert,
             fragmentShader: simpleFrag,
         })
-        const cube = new THREE.Mesh(new THREE.BoxGeometry(), shaderMat)
-        this.scene.add(cube)
+        const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry( 5, 5 ), shaderMat)
+        this.scene.add(plane)
 
         MyGUI.hide()
         if (config.myGui)
@@ -55,6 +62,7 @@ class MainThreeScene {
 
     update() {
         this.renderer.render(this.scene, this.camera);
+        this.uniforms.uTime.value += 1;
     }
 
     resizeCanvas() {
