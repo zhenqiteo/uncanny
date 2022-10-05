@@ -11,7 +11,7 @@
 // import MainThreeScene from "@/classes/MainThreeScene";
 
 export default {
-    name: "TitleScreen",
+    name: "ToggleButton",
     mounted() {
         MainThreeScene.init(this.$refs.container);
     },
@@ -28,6 +28,9 @@ export default {
         left: 0;
         padding: 100px;
         font-family: Founders Grotesk,Helvetica,san-serif;
+    }
+    button {
+        background: transparent;
     }
     
 </style>

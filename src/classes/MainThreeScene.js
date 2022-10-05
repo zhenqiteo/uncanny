@@ -9,6 +9,11 @@ import MyGUI from '../utils/MyGUI'
 import simpleFrag from '../shaders/simple.frag'
 import simpleVert from '../shaders/simple.vert'
 
+import colorFrag from '../shaders/color.frag'
+import colorVert from '../shaders/color.vert'
+
+import ParticleSystem from './ParticleSystem'
+
 class MainThreeScene {
     constructor() {
         this.bind()
@@ -29,12 +34,14 @@ class MainThreeScene {
         this.scene = new THREE.Scene()
 
         //CAMERA AND ORBIT CONTROLLER
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-        this.camera.position.set(0, 0, 1)
+        this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10)
+        this.camera.position.set(0, 0, 3)
         this.controls = new OrbitControls(this.camera, this.renderer.domElement)
         this.controls.enabled = config.controls
         this.controls.maxDistance = 1500
         this.controls.minDistance = 0
+
+        //ParticleSystem.init(this.scene)
 
         this.uniforms = {
             uTime: {
@@ -43,12 +50,19 @@ class MainThreeScene {
         }
 
         //DUMMY CUBE + SIMPLE GLSL SHADER LINKAGE
-        const shaderMat = new THREE.ShaderMaterial({
+        const shaderOne = new THREE.ShaderMaterial({
             uniforms: this.uniforms,
             vertexShader: simpleVert,
             fragmentShader: simpleFrag,
         })
-        const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry( 5, 5 ), shaderMat)
+
+        const shaderTwo = new THREE.ShaderMaterial({
+            uniforms: this.uniforms,
+            vertexShader: colorVert,
+            fragmentShader: colorFrag,
+        })
+
+        const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry( 5, 5 ), shaderOne)
         this.scene.add(plane)
 
         MyGUI.hide()
@@ -63,6 +77,7 @@ class MainThreeScene {
     update() {
         this.renderer.render(this.scene, this.camera);
         this.uniforms.uTime.value += 1;
+        //ParticleSystem.update();
     }
 
     resizeCanvas() {
