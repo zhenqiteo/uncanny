@@ -22,6 +22,6 @@ export default {
 <style scoped lang="stylus">
     .threeScene {
         position: fixed;
-        z-index: -1;
+        z-index: 0;
     }
 </style>

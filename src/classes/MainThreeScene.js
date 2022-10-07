@@ -1,6 +1,7 @@
 import * as THREE from "three"
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { MathUtils } from "three/src/math/MathUtils"
 
 import RAF from '../utils/RAF'
 import config from '../utils/config'
@@ -20,7 +21,7 @@ class MainThreeScene {
         this.camera
         this.scene
         this.renderer
-        this.controls
+        //this.controls
     }
 
     init(container) {
@@ -34,18 +35,21 @@ class MainThreeScene {
         this.scene = new THREE.Scene()
 
         //CAMERA AND ORBIT CONTROLLER
-        this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10)
-        this.camera.position.set(0, 0, 3)
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-        this.controls.enabled = config.controls
-        this.controls.maxDistance = 1500
-        this.controls.minDistance = 0
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.001, 100)
+        this.camera.position.set(0, 0, 1)
+        // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        // this.controls.enabled = config.controls
+        // this.controls.maxDistance = 1500
+        // this.controls.minDistance = 0
 
         //ParticleSystem.init(this.scene)
 
         this.uniforms = {
             uTime: {
                 value: 0
+            },
+            uMouse: {
+                value: new THREE.Vector2()
             }
         }
 
@@ -62,7 +66,15 @@ class MainThreeScene {
             fragmentShader: colorFrag,
         })
 
-        const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry( 5, 5 ), shaderOne)
+        const shaderThree = new THREE.MeshNormalMaterial()
+
+        // SHADER ARRAY
+        const shaderArrays = [ shaderOne, shaderTwo, shaderThree];
+        let randomize = THREE.MathUtils.randInt(0, shaderArrays.length-1);
+
+        var material = shaderArrays[randomize];
+
+        const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry( 2, 2 ), material)
         this.scene.add(plane)
 
         MyGUI.hide()
