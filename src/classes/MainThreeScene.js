@@ -13,6 +13,9 @@ import simpleVert from '../shaders/simple.vert'
 import colorFrag from '../shaders/color.frag'
 import colorVert from '../shaders/color.vert'
 
+import redFrag from '../shaders/red.frag'
+import redVert from '../shaders/red.vert'
+
 import ParticleSystem from './ParticleSystem'
 
 class MainThreeScene {
@@ -35,12 +38,12 @@ class MainThreeScene {
         this.scene = new THREE.Scene()
 
         //CAMERA AND ORBIT CONTROLLER
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.001, 100)
-        this.camera.position.set(0, 0, 1)
-        // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-        // this.controls.enabled = config.controls
-        // this.controls.maxDistance = 1500
-        // this.controls.minDistance = 0
+        this.camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 1000)
+        this.camera.position.set(0, 0, 2)
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        this.controls.enabled = config.controls
+        this.controls.maxDistance = 1500
+        this.controls.minDistance = 0
 
         //ParticleSystem.init(this.scene)
 
@@ -49,6 +52,9 @@ class MainThreeScene {
                 value: 0
             },
             uMouse: {
+                value: new THREE.Vector2()
+            },
+            uResolution: {
                 value: new THREE.Vector2()
             }
         }
@@ -66,7 +72,12 @@ class MainThreeScene {
             fragmentShader: colorFrag,
         })
 
-        const shaderThree = new THREE.MeshNormalMaterial()
+        // const shaderThree = new THREE.MeshNormalMaterial()
+        const shaderThree = new THREE.ShaderMaterial({
+            uniforms: this.uniforms,
+            vertexShader: redVert,
+            fragmentShader: redFrag,
+        })
 
         // SHADER ARRAY
         const shaderArrays = [ shaderOne, shaderTwo, shaderThree];
@@ -84,6 +95,8 @@ class MainThreeScene {
         //RENDER LOOP AND WINDOW SIZE UPDATER SETUP
         window.addEventListener("resize", this.resizeCanvas)
         RAF.subscribe('threeSceneUpdate', this.update)
+
+        // document.onmousemove
     }
 
     update() {
@@ -96,6 +109,8 @@ class MainThreeScene {
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.camera.aspect = window.innerWidth / window.innerHeight
         this.camera.updateProjectionMatrix()
+        // this.uniforms.uResolution.value.x = renderer.domElement.width;
+        // this.uniforms.uResolution.value.y = renderer.domElement.height;
     }
 
     bind() {

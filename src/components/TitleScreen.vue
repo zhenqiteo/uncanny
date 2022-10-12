@@ -1,6 +1,8 @@
 <template>
     <div class="titleScreen">
-        <h1>UNCAИИY</h1>    
+        <div class="name">
+            <h1>UNCAИИY</h1>  
+        </div>  
     </div>
 </template>
 
@@ -18,12 +20,12 @@ export default {
 
 <style scoped lang="stylus">
     .titleScreen {
+        display: flex;
         position: absolute;
-        top: 0;
-        left: 50%;
-        padding: 100px;
         font-family: Founders Grotesk,Helvetica,san-serif;
-        z-index: 1;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
     }
     
 </style>

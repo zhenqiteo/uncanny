@@ -5,6 +5,7 @@ varying vec2 vMatCapUV;
 
 uniform float uTime;
 uniform vec2 uMouse;
+uniform vec2 uResolution;
 
 float random(vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
@@ -31,14 +32,23 @@ void main() {
     vec3 blue = vec3(0.286, 0.576, 0.996);
     vec3 yellow = vec3(0.996, 0.906, 0.055);
     vec3 white = vec3(1.0);
+
+    vec2 st = gl_FragCoord.xy/uResolution;
+
+    vec3 color = vec3(0.);
+    //st.y *= uResolution.y/uResolution.x;
+
+    vec2 pos = st.yx*vec2(4.,4.);
+
+    float pattern = pos.x;
+
+    pos = rotate2d( noise(pos.yx) ) * pos;
+    // pos.x += uTime*0.1 + uMouse.x/uResolution.x;
+    // pos += uMouse.x/uResolution.x;
+
+    pattern = lines(pos,1.);
     
-    // waveduv
-    vec2 wavedUv = vec2(vUv.y, vUv.x*sin(uTime*0.02));
+    color = vec3(0.756,0.049,1.000)*fill(pattern,1.);   
+    gl_FragColor = vec4(st, 0.1,1.0);
 
-    float strength = smoothstep(0.1, 0.2, noise(vUv.xy));
-    //strength += 0.25*sin(vUv.x+uTime*0.02);
-    //vec3 blueIsh = mix(white, blue, strength);
-    vec3 mixedColor = mix(blue, white, strength);
-
-    gl_FragColor = vec4(mixedColor, 1.0);
 }
