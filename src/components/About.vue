@@ -1,11 +1,22 @@
 <template>
     <div class="about">
-        <h1>Unexpected. Unusual. Unconventional.</h1>
     </div>
+
 </template>
 
+<script>
+import ThreeScene from './ThreeScene.vue';
+export default {
+    name: "About",
+    props: {},
+    mounted() {
+        // MainThreeScene.init(this.$refs.container);
+    },
+    components: { ThreeScene }
+};
+</script>
+
 <style scoped lang="stylus">
-    .about {
-        position: absolute;
+    .about > h1 {
     }
 </style>

@@ -30,6 +30,7 @@ void main() {
     vec3 white = vec3(1.0);
 
     vec3 mixedColor = mix(yellow, white, strength);
+    mixedColor += mix(mixedColor, white, strength);
 
     gl_FragColor = vec4(mixedColor, 1.);
 }

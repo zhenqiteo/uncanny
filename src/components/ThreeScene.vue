@@ -22,6 +22,7 @@ export default {
 <style scoped lang="stylus">
     .threeScene {
         position: fixed;
-        z-index: 0;
+        // change this to adjust controls
+        z-index: -1;
     }
 </style>

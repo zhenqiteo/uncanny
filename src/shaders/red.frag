@@ -26,6 +26,11 @@ float noise(vec2 p){
 	return res*res;
 }
 
+float pcurve( float x, float a, float b ){
+    float k = pow(a+b,a+b) / (pow(a,a)*pow(b,b));
+    return k * pow( x, a ) * pow( 1.0-x, b );
+}
+
 void main() {
 
     vec3 red = vec3(1., 0.404, 0.369);
@@ -33,22 +38,11 @@ void main() {
     vec3 yellow = vec3(0.996, 0.906, 0.055);
     vec3 white = vec3(1.0);
 
-    vec2 st = gl_FragCoord.xy/uResolution;
+	float y = pcurve(vUv.y, 3.0, sin(uTime*0.001)*0.5+0.5);
+	vec3 color = vec3(y);
+	color += mix(red, white, 0.1);
+	
 
-    vec3 color = vec3(0.);
-    //st.y *= uResolution.y/uResolution.x;
-
-    vec2 pos = st.yx*vec2(4.,4.);
-
-    float pattern = pos.x;
-
-    pos = rotate2d( noise(pos.yx) ) * pos;
-    // pos.x += uTime*0.1 + uMouse.x/uResolution.x;
-    // pos += uMouse.x/uResolution.x;
-
-    pattern = lines(pos,1.);
-    
-    color = vec3(0.756,0.049,1.000)*fill(pattern,1.);   
-    gl_FragColor = vec4(st, 0.1,1.0);
+	gl_FragColor= vec4(color, 1.0);
 
 }

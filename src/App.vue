@@ -1,17 +1,18 @@
 <template>
     <ThreeScene/>
     <TitleScreen/>
+    <About/>
     <Footer/>
 </template>
 
 <script>
 import ThreeScene from "./components/ThreeScene.vue"
-import TitleScreen from "./components/TitleScreen.vue"
 import About from './components/About.vue'
+import TitleScreen from "./components/TitleScreen.vue"
 import Footer from './components/Footer.vue'
-import NotFound from './components/NotFound.vue'
 
 const routes = {
+    '/': TitleScreen,
     '/about': About,
 }
 
@@ -20,14 +21,18 @@ export default {
     components: {
         ThreeScene,
         TitleScreen,
-        Footer,
         About,
-        NotFound
+        Footer
     }
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus"> 
+@font-face {
+    font-family: "Founders Grotesk";
+    src:local("FoundersGrotesk-Regular"), url("/src/fonts/FoundersGrotesk-Regular.woff");
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -40,4 +45,5 @@ body {
     padding: 0;
     font-family: Founders Grotesk,Helvetica,san-serif;
 }
+
 </style>

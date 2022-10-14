@@ -47,9 +47,10 @@ class MainThreeScene {
 
         //ParticleSystem.init(this.scene)
 
+
         this.uniforms = {
             uTime: {
-                value: 0
+                value: 1.
             },
             uMouse: {
                 value: new THREE.Vector2()
@@ -59,7 +60,7 @@ class MainThreeScene {
             }
         }
 
-        //DUMMY CUBE + SIMPLE GLSL SHADER LINKAGE
+        // THREE SHADERS - UNCY
         const shaderOne = new THREE.ShaderMaterial({
             uniforms: this.uniforms,
             vertexShader: simpleVert,
@@ -96,7 +97,6 @@ class MainThreeScene {
         window.addEventListener("resize", this.resizeCanvas)
         RAF.subscribe('threeSceneUpdate', this.update)
 
-        // document.onmousemove
     }
 
     update() {
