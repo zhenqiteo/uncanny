@@ -13,7 +13,8 @@
     "glslify-loader": "^2.0.0",
     "raw-loader": "^4.0.2",
     "three": "^0.127.0",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vue-router": "^3.6.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

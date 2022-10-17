@@ -1,28 +1,25 @@
 <template>
     <ThreeScene/>
     <TitleScreen/>
-    <About/>
-    <Footer/>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <div class="container">
+        <router-view/>
+    </div>
 </template>
 
 <script>
+// import 'vue-router';
 import ThreeScene from "./components/ThreeScene.vue"
-import About from './components/About.vue'
 import TitleScreen from "./components/TitleScreen.vue"
-import Footer from './components/Footer.vue'
-
-const routes = {
-    '/': TitleScreen,
-    '/about': About,
-}
+import TopNav from "./components/TopNav.vue"
 
 export default {
     name: "App",
     components: {
         ThreeScene,
         TitleScreen,
-        About,
-        Footer
+        TopNav
     }
 }
 </script>
@@ -30,7 +27,7 @@ export default {
 <style lang="stylus"> 
 @font-face {
     font-family: "Founders Grotesk";
-    src:local("FoundersGrotesk-Regular"), url("/src/fonts/FoundersGrotesk-Regular.woff");
+    src:url("./fonts/FoundersGrotesk-Regular.woff2") format("woff2");
 }
 
 body {
@@ -43,7 +40,7 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Founders Grotesk,Helvetica,san-serif;
+    font-family: "Founders Grotesk",Helvetica,san-serif;
 }
 
 </style>

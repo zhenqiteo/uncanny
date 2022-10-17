@@ -2,6 +2,8 @@ import * as THREE from "three"
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { MathUtils } from "three/src/math/MathUtils"
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 
 import RAF from '../utils/RAF'
 import config from '../utils/config'
@@ -46,8 +48,6 @@ class MainThreeScene {
         this.controls.minDistance = 0
 
         //ParticleSystem.init(this.scene)
-
-
         this.uniforms = {
             uTime: {
                 value: 1.
@@ -88,6 +88,15 @@ class MainThreeScene {
 
         const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry( 2, 2 ), material)
         this.scene.add(plane)
+
+        // FONT ?
+        const fontLoader = new FontLoader();
+        fontLoader.load(
+            '../fonts/FoundersGrotesk-Regular.json',
+            (font) => {
+                console.log(font);
+            }
+        )
 
         MyGUI.hide()
         if (config.myGui)

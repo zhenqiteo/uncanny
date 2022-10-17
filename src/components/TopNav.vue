@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">  
+    <div class="topnav">  
         <nav>
             <ul>
                 <li>
@@ -14,11 +14,20 @@
     </div>
 </template>
 
+<script>
+
+export default {
+    name: "TopNav",
+    components: {
+    }
+}
+</script>
+
 
 <style scoped lang="stylus">
-    .footer {
+    .topnav {
         position: fixed;
-        bottom: 0;
+        top: 0;
         left: 0;
         width: 100%;
         height: 50px;

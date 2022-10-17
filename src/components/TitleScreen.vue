@@ -21,6 +21,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
+    @font-face {
+        font-family: "Founders Grotesk";
+        src: url("/src/fonts/FoundersGrotesk-Regular.woff") format("woff");
+    }
     .titleScreen {
         positon: relative;
         z-index: -1;
@@ -34,8 +38,8 @@ export default {
         transform: translate(-50%, -50%);
     }
 
-    .container > h1 {
-        font-size: 8rem;
-        font-family: Founders Grotesk,Helvetica,san-serif;
+     h1 {
+        font-size: 10rem;
+        font-family: "Founders Grotesk",Helvetica,san-serif;
     }
 </style>
