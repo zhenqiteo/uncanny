@@ -90,13 +90,13 @@ class MainThreeScene {
         this.scene.add(plane)
 
         // FONT ?
-        const fontLoader = new FontLoader();
-        fontLoader.load(
-            '../fonts/FoundersGrotesk-Regular.json',
-            (font) => {
-                console.log(font);
-            }
-        )
+        // const fontLoader = new FontLoader();
+        // fontLoader.load(
+        //     '../fonts/FoundersGrotesk-Regular.json',
+        //     (font) => {
+        //         console.log(font);
+        //     }
+        // )
 
         MyGUI.hide()
         if (config.myGui)
