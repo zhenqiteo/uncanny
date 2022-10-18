@@ -42,12 +42,12 @@ class MainThreeScene {
         //CAMERA AND ORBIT CONTROLLER
         this.camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 1000)
         this.camera.position.set(0, 0, 2)
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-        this.controls.enabled = config.controls
-        this.controls.maxDistance = 1500
-        this.controls.minDistance = 0
+        // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        // this.controls.enabled = config.controls
+        // this.controls.maxDistance = 1500
+        // this.controls.minDistance = 0
 
-        //ParticleSystem.init(this.scene)
+        // ParticleSystem.init(this.scene)
         this.uniforms = {
             uTime: {
                 value: 1.
@@ -111,7 +111,7 @@ class MainThreeScene {
     update() {
         this.renderer.render(this.scene, this.camera);
         this.uniforms.uTime.value += 1;
-        //ParticleSystem.update();
+        // ParticleSystem.update();
     }
 
     resizeCanvas() {

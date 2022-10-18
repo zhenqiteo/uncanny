@@ -1,35 +1,29 @@
 <template>
-    <ThreeScene/>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> | 
-    <router-link to="/work">Work</router-link>
-  </nav>
-  <router-view/>
+    <TopNav/>
+    <div class="webgl">
+        <ThreeScene/>
+    </div>
+    <div class="router-view">
+        <router-view/>
+    </div>
 </template>
+
 <script>
 import ThreeScene from "./components/ThreeScene.vue"
 import TitleScreen from "./components/TitleScreen.vue"
+import TopNav from "./components/TopNav.vue"
 
 export default {
     name: "App",
     components: {
         ThreeScene,
         TitleScreen,
+        TopNav
     }
 }
 </script>
-<style lang="stylus">
-@font-face {
-    font-family: "Founders-Grotesk";
-    src: url("~@/assets/fonts/FoundersGrotesk-Regular.woff2");
-}
 
-body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
+<style lang="css">
 
 * {
     box-sizing: border-box;
@@ -37,4 +31,19 @@ body {
     padding: 0;
     font-family: "Founders-Grotesk",Helvetica,san-serif;
 }
+
+.webgl {
+    position: fixed;
+}
+
+.router-view {
+    position: relative;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
 </style>
