@@ -19,6 +19,16 @@
   </div>
 </template>
 
+<script>
+// import TopNav from './components/TopNav.vue'
+// export default {
+//     name: "TopNav",
+//     components: {
+//       TopNav
+//     }
+// }
+</script>
+
 <style>
 .about {
   justify-content: center;

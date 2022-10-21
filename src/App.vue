@@ -1,5 +1,4 @@
 <template>
-    <TopNav/>
     <div class="webgl">
         <ThreeScene/>
     </div>
@@ -11,14 +10,12 @@
 <script>
 import ThreeScene from "./components/ThreeScene.vue"
 import TitleScreen from "./components/TitleScreen.vue"
-import TopNav from "./components/TopNav.vue"
 
 export default {
     name: "App",
     components: {
         ThreeScene,
         TitleScreen,
-        TopNav
     }
 }
 </script>

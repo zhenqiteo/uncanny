@@ -53,8 +53,20 @@ export default {
     color: black;
 }
 
-#header {
-    color: black;
+@media screen and (max-width: 500px) {
+  .topNav a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topNav-left {
+    display: none;
+  }
+  
+
+  .topNav-centered {
+    float: none;
+  }
 }
 
 

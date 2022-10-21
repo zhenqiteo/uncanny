@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap": "^5.2.2",
     "bootstrap-vue": "^2.22.0",
+    "caniuse-lite": "^1.0.30001423",
     "core-js": "^3.6.5",
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",

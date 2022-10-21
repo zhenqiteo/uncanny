@@ -14,7 +14,6 @@ export default {
         msg: String,
     },
     mounted() {
-        // MainThreeScene.init(this.$refs.container);
     },
 };
 </script>
